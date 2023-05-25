@@ -15,6 +15,7 @@ module.exports = {
     extend: {
       animation: {
         'bg':'bg 2s ease-in-out infinite',
+        'path':'path 1s ease-in-out'
     },
       keyframes: {
         'bg': {
@@ -27,6 +28,17 @@ module.exports = {
               'background-color': 'rgba(25,25,25)'
             },
         },
+        'path':{
+          '0%':{
+            'stroke-dashoffset': '0',
+            'stroke-dasharray': '50',
+
+          },
+          '100%':{
+            'stroke-dashoffset': '50',
+            'stroke-dasharray': '50',
+          }
+        }
     },
       colors:{
         light1:'#E8F6EF',
