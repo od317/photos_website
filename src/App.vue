@@ -223,7 +223,7 @@ isLocked.value = false
             </form>
 
             <div :class="`w-[5%]  flex items-center justify-center`">
-                <RouterLink to="/sp" class=" saved_button hidden w-[60%] pb-[60%] relative bg-red-600 rounded-full text-white md:flex ">
+                <RouterLink to="/sp" class=" saved_button after:bg-red-600 after:text-white after:content-['Saved'] after:rounded-sm  hidden w-[60%] pb-[60%] relative bg-red-600 rounded-full text-white md:flex ">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" :class="`bi bi-heart-fill mt-[15%] ml-[15%] w-[70%] h-[70%] absolute  `" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/> </svg>        
                 </RouterLink>
             </div>
@@ -359,7 +359,6 @@ button{
    transition: all .2s;
    height: 80%;
    position:absolute;
-   background-color:#1564be;
    text-align: center;
    display: flex;
    justify-content: center;

@@ -229,10 +229,10 @@ window.scrollTo({to:0,behavior:'instant'})
 <template>
 
 
-<div class=" hidden md:first:flex flex-row gap-x-[5%] mb-[2%] justify-center items-center">
+<div class=" hidden  md:first:flex flex-row gap-x-[5%] mb-[4%] justify-center items-center ">
 
-  <div :style="`background-image:url(${s.img})`" class=" relative pb-[8%] w-[20%] bg-neutral-700 rounded-lg bg-cover bg-center" v-for="s in query_buttons">
-        <RouterLink  :to="`/search?query=${s.title}`"  class=" rounded-lg hover:text-white absolute bg-neutral-800 bg-opacity-50 w-full h-full flex items-center justify-center ">
+  <div :style="`background-image:url(${s.img})`" class=" group relative pb-[8%] w-[20%] bg-neutral-700 rounded-lg  hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] transition-all duration-200 bg-cover bg-center" v-for="s in query_buttons">
+        <RouterLink  :to="`/search?query=${s.title}`"  class=" translate-x-[5%] translate-y-[10%] group-hover:translate-x-[0%] transition-all duration-200 group-hover:translate-y-[0%] rounded-lg hover:text-white absolute bg-neutral-800 bg-opacity-50 w-full h-full flex items-center justify-center ">
             <label class=" cursor-pointer  " for="">{{s.title}}</label>
         </RouterLink>
   </div>
