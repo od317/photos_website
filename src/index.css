@@ -5,3 +5,17 @@
 *{
     outline: none;
 }
+
+body{
+    background-color: #ffffff;
+}
+
+body::-webkit-scrollbar {
+    width: .5rem;
+  }
+   
+
+   
+  body::-webkit-scrollbar-thumb {
+    background-color: #e60023;
+  }

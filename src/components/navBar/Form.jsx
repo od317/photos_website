@@ -19,7 +19,6 @@ function Form({logoSection,savedIconSection}) {
   useEffect(()=>{
       const handleClickOutSideDropDown = (event)=>{
             if(dropDownref.current&&!dropDownref.current.contains(event.target)){
-              console.log('removed')
               setShow(false)
             }
       }
@@ -31,10 +30,10 @@ function Form({logoSection,savedIconSection}) {
 
   return (<>
     <div className=' relative'>
-        <div className=' flex flex-row w-full items-center px-[2%] justify-evenly py-[1%] bg-white relative '>
+        <div className=' flex flex-row w-full items-center px-[2%] justify-evenly py-[1%]  relative '>
             {logoSection}
             <div ref={dropDownref} className='  sm:w-[70%] lg:w-[80%] relative '>
-                <form onSubmit={handleSubmit} className=' bg-gray-200 w-full flex flex-row  px-[2%] py-[1%] text-[110%] rounded-full' action="">
+                <form onSubmit={handleSubmit} className=' bg-secondary hover:bg-blend-darken w-full flex flex-row  px-[2%] py-[1%] text-[110%] rounded-full' action="">
                     <input ref={inputRef} onFocus={()=>{
                       setShow(true)
                       }} 
@@ -42,18 +41,73 @@ function Form({logoSection,savedIconSection}) {
                       setQuery(e.target.value)
                       }} 
                       type="text" placeholder='search' className='text-gray w-full bg-transparent placeholder:text-gray-800' />
-                    <button className='bg-gray-700' onClick={()=>{
+                    <button className='hover:bg-gray-300 rounded-full p-[.5%]' onClick={()=>{
                       setQuery('')
-                    }} type='button'>x</button>          
+                      }} type='button'>
+                        <svg
+                          viewBox="0 0 470 1000"
+                          fill="currentColor"
+                          height="1em"
+                          width="1em"
+                        >
+                          <path d="M452 656c12 12 18 26.333 18 43s-6 31-18 43c-12 10.667-26.333 16-43 16s-31-5.333-43-16L234 590 102 742c-12 10.667-26.333 16-43 16s-31-5.333-43-16C5.333 730 0 715.667 0 699s5.333-31 16-43l138-156L16 342C5.333 330 0 315.667 0 299s5.333-31 16-43c12-10.667 26.333-16 43-16s31 5.333 43 16l132 152 132-152c12-10.667 26.333-16 43-16s31 5.333 43 16c12 12 18 26.333 18 43s-6 31-18 43L314 500l138 156" />
+                        </svg>
+                      </button>          
                 </form>
                 {show &&
                 <div className='flex flex-row items-center justify-center w-full absolute'> 
-                  <ul className='flex flex-col z-[2] bg-red-500 p-[1%] w-[90%]'>
-                              <li className='w-full bg-'>item1</li>
-                              <li className='w-full bg-'>item1</li>
-                              <li className='w-full bg-'>item1</li>
-                              <li className='w-full bg-'>item1</li>
-                              <li className='w-full bg-'>item1</li>
+                  <ul className='flex flex-col bg-main rounded-b-xl space-y-[.2%] z-[2]  p-[1%] w-[90%]'>
+                              <li className='w-full flex flex-row items-center '>
+                                    <svg
+                                      fill="none"
+                                      stroke="currentColor"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      viewBox="0 0 24 24"
+                                      height="1em"
+                                      width="1em"
+                                    >
+                                      <path d="M19 11 A8 8 0 0 1 11 19 A8 8 0 0 1 3 11 A8 8 0 0 1 19 11 z" />
+                                      <path d="M21 21l-4.35-4.35" />
+                                    </svg>
+                                    <label className='ml-[1%]' htmlFor="">item1</label>
+                              </li>
+
+                              <li className='w-full flex flex-row items-center '>
+                                    <svg
+                                      fill="none"
+                                      stroke="currentColor"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      viewBox="0 0 24 24"
+                                      height="1em"
+                                      width="1em"
+                                    >
+                                      <path d="M19 11 A8 8 0 0 1 11 19 A8 8 0 0 1 3 11 A8 8 0 0 1 19 11 z" />
+                                      <path d="M21 21l-4.35-4.35" />
+                                    </svg>
+                                    <label className='ml-[1%]' htmlFor="">item1</label>
+                              </li>
+
+                              <li className='w-full flex flex-row items-center '>
+                                    <svg
+                                      fill="none"
+                                      stroke="currentColor"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      viewBox="0 0 24 24"
+                                      height="1em"
+                                      width="1em"
+                                    >
+                                      <path d="M19 11 A8 8 0 0 1 11 19 A8 8 0 0 1 3 11 A8 8 0 0 1 19 11 z" />
+                                      <path d="M21 21l-4.35-4.35" />
+                                    </svg>
+                                    <label className='ml-[1%]' htmlFor="">item1</label>
+                              </li>
+
                   </ul>
                 </div>
                 }
