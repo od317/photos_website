@@ -8,11 +8,12 @@ function App() {
   return (
     <>
       <NavBar></NavBar>
-      <Routes>
-        <Route element={<Home/>} path='/'/>
-        <Route element={<Search/>} path='/search'/>
-      </Routes>
-
+      <div className='px-[2%]'>
+          <Routes>
+                <Route element={<Home/>} path='/'/>
+                <Route element={<Search/>} path='/search'/>
+          </Routes>
+      </div>
     </>
   
   )
