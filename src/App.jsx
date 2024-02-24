@@ -1,11 +1,20 @@
-import React from 'react';
+import React from 'react'
+import {Routes,Route} from 'react-router-dom'
+import Search from './pages/Search'
+import Home from './pages/Home'
 
 function App() {
   return (
-    <div className=''>
-      App
-    </div>
-  );
+    <>
+
+      <Routes>
+        <Route element={<Home/>} path='/'/>
+        <Route element={<Search/>} path='/search'/>
+      </Routes>
+
+    </>
+  
+  )
 }
 
-export default App;
+export default App
