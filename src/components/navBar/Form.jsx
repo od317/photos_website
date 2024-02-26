@@ -1,5 +1,6 @@
 import React, { useState,useRef ,useEffect} from 'react'
 import {useSearchParams,NavLink,useNavigate} from 'react-router-dom'
+
 function Form({logoSection,savedIconSection}) {
   const [searchparams,setSearchparams] = useSearchParams()
   const [query,setQuery] = useState(searchparams.get('query')||'')
@@ -33,7 +34,7 @@ function Form({logoSection,savedIconSection}) {
         <div className=' flex flex-row w-full items-center px-[2%] justify-evenly py-[1%]  relative '>
             {logoSection}
             <div ref={dropDownref} className='  sm:w-[70%] lg:w-[80%] relative '>
-                <form onSubmit={handleSubmit} className=' bg-secondary hover:bg-blend-darken w-full flex flex-row  px-[2%] py-[1%] text-[110%] rounded-full' action="">
+                <form onSubmit={handleSubmit} className=' bg-secondary hover:bg-hov  w-full flex flex-row  px-[2%] py-[1%] text-[110%] rounded-full' action="">
                     <input ref={inputRef} onFocus={()=>{
                       setShow(true)
                       }} 
@@ -55,9 +56,9 @@ function Form({logoSection,savedIconSection}) {
                       </button>          
                 </form>
                 {show &&
-                <div className='flex flex-row items-center justify-center w-full absolute'> 
-                  <ul className='flex flex-col bg-main rounded-b-xl space-y-[.2%] z-[2]  p-[1%] w-[90%]'>
-                              <li className='w-full flex flex-row items-center '>
+                <div className='flex flex-row items-center justify-center w-full absolute z-[10]'> 
+                  <ul className='flex flex-col bg-main rounded-b-xl space-y-[.2%] z-[2]  py-[1%] w-[90%]'>
+                              <li className='w-full flex flex-row hover:bg-hov items-center px-[2%] py-[1%]'>
                                     <svg
                                       fill="none"
                                       stroke="currentColor"
@@ -107,7 +108,6 @@ function Form({logoSection,savedIconSection}) {
                                     </svg>
                                     <label className='ml-[1%]' htmlFor="">item1</label>
                               </li>
-
                   </ul>
                 </div>
                 }

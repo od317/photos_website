@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import {useSearchParams} from 'react-router-dom'
-import Grid from '../components/grid/Grid'
+import SearchLayout from '../components/search/SearchLayout'
 
 function Search() {
 
 
   return (
     <>
-      <Grid/>
+      <SearchLayout></SearchLayout>
     </>
   )
 }
