@@ -11,6 +11,7 @@ function Form({logoSection,savedIconSection}) {
   const navigate = useNavigate()
   const dropDownref = useRef(null)
   const inputRef = useRef(null)
+
   const handleSubmit = (e)=>{
       e.preventDefault()
       if(inputRef.current)
@@ -22,6 +23,13 @@ function Form({logoSection,savedIconSection}) {
       setPreavSearch(ps)
   }
 
+  const handleLinkClick = (v)=>{
+        if(inputRef.current)
+        inputRef.current.blur()
+        setShow(false)
+        setQuery(v)
+        navigate(`/search?query=${v}`)
+  }
 
   useEffect(()=>{
       const handleClickOutSideDropDown = (event)=>{
@@ -69,7 +77,7 @@ function Form({logoSection,savedIconSection}) {
                                {prevSearch.map((v,i)=>{
                                 if(v.length)
                                 return(
-                                  <li key={v} className='w-full flex flex-row hover:bg-hov items-center px-[2%] py-[1%]'>
+                                  <button onClick={()=>handleLinkClick(v)} key={v} className='w-full flex flex-row hover:bg-hov items-center px-[2%] py-[1%]'>
                                   <svg
                                     fill="none"
                                     stroke="currentColor"
@@ -84,7 +92,7 @@ function Form({logoSection,savedIconSection}) {
                                     <path d="M21 21l-4.35-4.35" />
                                   </svg>
                                   <label className='ml-[1%]' htmlFor="">{v}</label>
-                                  </li>
+                                  </button>
                                 )
                                 return
                                })}
