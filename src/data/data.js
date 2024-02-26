@@ -1,3 +1,5 @@
+import Cookies from 'js-cookie'
+
 const AccessKey = 'Tj7kO8KhPyJ1xonByecV2i6py0mranMD8W18AzR_uWI'
 
 export const fetchData = async (query,pagenum)=>{
@@ -11,3 +13,21 @@ export const fetchData = async (query,pagenum)=>{
     return data
 }
 
+export const editCookie = (query)=>{
+            // ps preacSearch
+            let ps = Cookies.get('prevSearch') || ''
+            ps = ps.split(',')
+            console.log('prevSearch is ',ps)
+            if(new Set(ps).has(query)){
+                console.log('already exist')
+                return []
+            }
+            if(ps.length>7){
+               ps = [...ps.slice(1),query]
+            }
+            else
+               ps = [...ps,query]
+            Cookies.set('prevSearch', ps , { expires: 7 })
+            return ps
+            // Cookies.remove('prevSearch')
+}

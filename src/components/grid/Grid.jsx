@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import {useSearchParams} from 'react-router-dom'
 import {fetchData} from '../../data/data'
 import {useInView} from 'react-intersection-observer'
-import Cookies from 'js-cookie'
 
 let page = 0
 
@@ -38,9 +37,6 @@ function Grid() {
       let newData = res
       setData(p=>[...newData])
       setFetching(false)
-      if(newData.length>0&&query.length>0){
-        console.log('adding data to cookies')
-      }
     })
     page+=1 
   },[query])

@@ -1,21 +1,27 @@
 import React, { useState,useRef ,useEffect} from 'react'
 import {useSearchParams,NavLink,useNavigate} from 'react-router-dom'
+import Cookies from 'js-cookie'
+import { editCookie } from '../../data/data'
 
 function Form({logoSection,savedIconSection}) {
   const [searchparams,setSearchparams] = useSearchParams()
   const [query,setQuery] = useState(searchparams.get('query')||'')
   const [show,setShow] = useState(false)
+  const [prevSearch,setPreavSearch] = useState(Cookies.get('prevSearch') ? Cookies.get('prevSearch').split(',') :[])
   const navigate = useNavigate()
   const dropDownref = useRef(null)
   const inputRef = useRef(null)
- 
   const handleSubmit = (e)=>{
       e.preventDefault()
       if(inputRef.current)
       inputRef.current.blur()
       setShow(false)
       navigate(`/search?query=${query}`)
+      let ps = editCookie(query)
+      if(ps.length>0)
+      setPreavSearch(ps)
   }
+
 
   useEffect(()=>{
       const handleClickOutSideDropDown = (event)=>{
@@ -27,7 +33,7 @@ function Form({logoSection,savedIconSection}) {
       return () => {
         document.removeEventListener("mousedown", handleClickOutSideDropDown);
       }
-  })
+  },[])
 
   return (<>
     <div className=' relative'>
@@ -58,6 +64,32 @@ function Form({logoSection,savedIconSection}) {
                 {show &&
                 <div className='flex flex-row items-center justify-center w-full absolute z-[10]'> 
                   <ul className='flex flex-col bg-main rounded-b-xl space-y-[.2%] z-[2]  py-[1%] w-[90%]'>
+                           {  prevSearch.length>0 ? 
+                              <>
+                               {prevSearch.map((v,i)=>{
+                                if(v.length)
+                                return(
+                                  <li key={v} className='w-full flex flex-row hover:bg-hov items-center px-[2%] py-[1%]'>
+                                  <svg
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    viewBox="0 0 24 24"
+                                    height="1em"
+                                    width="1em"
+                                  >
+                                    <path d="M19 11 A8 8 0 0 1 11 19 A8 8 0 0 1 3 11 A8 8 0 0 1 19 11 z" />
+                                    <path d="M21 21l-4.35-4.35" />
+                                  </svg>
+                                  <label className='ml-[1%]' htmlFor="">{v}</label>
+                                  </li>
+                                )
+                                return
+                               })}
+                              </>:
+                              <>
                               <li className='w-full flex flex-row hover:bg-hov items-center px-[2%] py-[1%]'>
                                     <svg
                                       fill="none"
@@ -108,6 +140,7 @@ function Form({logoSection,savedIconSection}) {
                                     </svg>
                                     <label className='ml-[1%]' htmlFor="">item1</label>
                               </li>
+                              </>}
                   </ul>
                 </div>
                 }
