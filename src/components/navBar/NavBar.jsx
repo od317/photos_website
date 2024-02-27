@@ -26,38 +26,7 @@ function NavBar() {
            </NavLink>
   </>)
   return (<>
-    <nav className=' hidden sm:block sticky top-0 z-[10] bg-white'>
-         <Form logoSection={logoSection} savedIconSection={savedIconSection}></Form>
-    </nav>
-    <nav className='sm:hidden fixed bottom-0 w-full flex justify-evenly bg-secondary py-[1%] flex-row'>
-        <NavLink to={'/'} className=' w-[20%] flex items-center justify-center'>
-          <svg fill="none" viewBox="0 0 24 24" height="2em" width="2em" >
-            <path
-              fill="currentColor"
-              fillRule="evenodd"
-              d="M21 8.772l-6.98-6.979a3 3 0 00-4.242 0L3 8.571v14.515h7v-6a2 2 0 114 0v6h7V8.772zm-9.808-5.565L5 9.4v11.686h3v-4a4 4 0 018 0v4h3V9.6l-6.393-6.394a1 1 0 00-1.415 0z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </NavLink>
-        <button className=' w-[20%] flex items-center justify-center'>
-            <svg
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              viewBox="0 0 24 24"
-              height="2em"
-              width="2em"
-            >
-              <path d="M19 11 A8 8 0 0 1 11 19 A8 8 0 0 1 3 11 A8 8 0 0 1 19 11 z" />
-              <path d="M21 21l-4.35-4.35" />
-            </svg>
-        </button>
-        <button className='w-[20%]'>1</button>
-        <button className='w-[20%]'>1</button>
-    </nav>
+    <Form logoSection={logoSection} savedIconSection={savedIconSection}></Form>
     </>
   )
 }

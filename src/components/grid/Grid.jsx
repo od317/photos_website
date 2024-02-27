@@ -44,15 +44,15 @@ function Grid() {
   return (
     <>
       { true ? 
-        <div className=' mt-[2%] sm:mt-[0%] grid grid-cols-5 gap-x-[1%] gap-y-[1rem]'>
+        <div className=' mt-[2%] sm:mt-[0%] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-[1%] gap-y-[1rem]'>
             {data.map((v,i)=>{
                     return(
                         <div key={v.id+''+i} style={{backgroundColor:v.color,backgroundImage:`url(${v.urls.raw})`}} className='pb-[150%] bg-cover bg-center'></div>
                     )
             })}
 
-        <div className='w-full flex items-center z-[1] col-span-5 my-[5%] justify-center relative ' >
-                <span ref={ref} className='bg-gray-600 p-[.8%]  animate-spin rounded-full'>
+        <div className='w-full flex items-center z-[1] col-span-5 mb-[15%] sm:mb-[5%] mt-[5%] justify-center relative ' >
+                <span ref={ref} className='bg-gray-600 p-[2%] sm:p-[.8%]  animate-spin rounded-full'>
                 <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" version="1.0" enableBackground="new 0 0 64 64">
                 <g>
                     <path stroke="null" id="svg_4" d="m44.47308,30.52692c-3.05355,0 -5.52692,-2.47337 -5.52692,-5.52692c0,-3.05355 2.47337,-5.52692 5.52692,-5.52692c3.05355,0 5.52692,2.47337 5.52692,5.52692c0,3.05355 -2.47337,5.52692 -5.52692,5.52692z" opacity="undefined" fill="#ffffff"/>
