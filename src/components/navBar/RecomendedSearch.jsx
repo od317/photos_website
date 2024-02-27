@@ -7,9 +7,9 @@ function RecomendedSearch({handleLinkClick,prevSearch}) {
             {  prevSearch.length>0 ? 
                 <>
                 {prevSearch.map((v,i)=>{
-                  if(v.length)
+                  if(v[0].length)
                   return(
-                    <button onClick={()=>handleLinkClick(v)} key={v}  className='w-[100%] hover:bg-hov flex flex-row  items-center px-[2%] py-[1%]'>
+                    <button onClick={()=>handleLinkClick(v[0])} key={v[0]+" "+i}  className='w-[100%] hover:bg-hov flex flex-row  items-center px-[2%] py-[1%]'>
                       <svg
                         fill="none"
                         className='cursor-pointer'
@@ -24,7 +24,7 @@ function RecomendedSearch({handleLinkClick,prevSearch}) {
                         <path d="M19 11 A8 8 0 0 1 11 19 A8 8 0 0 1 3 11 A8 8 0 0 1 19 11 z" />
                         <path d="M21 21l-4.35-4.35" />
                       </svg>
-                      <label className='ml-[1%] cursor-pointer' htmlFor="">{v}</label>
+                      <label className='ml-[1%] cursor-pointer' htmlFor="">{v[0]}</label>
                     </button>
                   )
                   return

@@ -6,6 +6,7 @@ export const fetchData = async (query,pagenum)=>{
     if(query.length>0){
         const res = await fetch(`https://api.unsplash.com/search/photos?client_id=${AccessKey}&per_page=10&page=${pagenum}&&query=${query}`)
         const data = await res.json()
+        editCookie(query,data.results[0])
         return data.results
     }
     const res = await fetch(`https://api.unsplash.com/photos/?client_id=${AccessKey}&per_page=10&page=${pagenum}`)
@@ -13,22 +14,24 @@ export const fetchData = async (query,pagenum)=>{
     return data
 }
 
-export const editCookie = (query)=>{
+export const editCookie = (query,img)=>{
             // ps preacSearch
+            img = img.urls.raw
             let ps = Cookies.get('prevSearch') || ''
-            ps = ps.split(',')
-            if(new Set(ps).has(query)){
+            if(checkDuplicate(query,formatCookies(ps))){
                 console.log('already exist')
                 return []
             }
+            ps = ps.split(',')
+            let cur = query+"++++"+img
             if(ps.length>7){
-               ps = [...ps.slice(1),query]
+               ps = [...ps.slice(1),cur]
             }
             else
-               ps = [...ps,query]
+               ps = [...ps,cur]
             Cookies.set('prevSearch', ps , { expires: 7 })
-            return ps
             // Cookies.remove('prevSearch')
+            return ps
 }
 
 export const removeItem = (item)=>{
@@ -41,8 +44,21 @@ export const removeItem = (item)=>{
        console.log('after',ps)       
 }
 
-export const fetchFormPhotos = async (prevSearch)=>{
-    const res = await fetch(`https://api.unsplash.com/search/photos?client_id=${AccessKey}&per_page=1&page=1&&query=cat`)
-    const data = await res.json()
-    console.log('from data is',data)
+export const checkDuplicate = (q,arr)=>{
+    let match = false
+    arr.forEach((v,i)=> {
+        if(v[0]===q)
+          match = true
+    })
+    console.log(match)    
+    return match
+}
+
+
+export const formatCookies = (arr)=>{
+       arr = arr.split(',')
+       arr = arr.map((v,i)=>{
+       return v.split('++++')
+       })
+       return arr
 }

@@ -1,7 +1,7 @@
 import React, { useState,useRef ,useEffect} from 'react'
 import {useSearchParams,NavLink,useNavigate} from 'react-router-dom'
 import Cookies from 'js-cookie'
-import { editCookie,removeItem } from '../../data/data'
+import { checkDuplicate, editCookie,formatCookies,removeItem } from '../../data/data'
 import RecomendedSearch from './RecomendedSearch'
 import SearchDrop from './SearchDrop'
 
@@ -10,7 +10,7 @@ function Form({logoSection,savedIconSection}) {
   const [query,setQuery] = useState(searchparams.get('query')||'')
   const [show,setShow] = useState(false)
   const [showSmall,setShowSmall] = useState(false)
-  const [prevSearch,setPreavSearch] = useState(Cookies.get('prevSearch') ? Cookies.get('prevSearch').split(',') :[])
+  const [prevSearch,setPreavSearch] = useState(Cookies.get('prevSearch') ? formatCookies(Cookies.get('prevSearch')) :[])
   const [showSmallDrop,setShowSmallDrop] = useState(false)
   const navigate = useNavigate()
   const dropDownref = useRef(null)
@@ -25,9 +25,14 @@ function Form({logoSection,savedIconSection}) {
       setShowSmall(false)
       setShowSmallDrop(false)
       navigate(`/search?query=${query}`)
-      let ps = editCookie(query)
-      if(ps.length>0)
-      setPreavSearch(ps)
+      if(checkDuplicate(query,prevSearch))
+         return
+      if(prevSearch.length>7)
+         setPreavSearch(p=>[...prevSearch.slice(1),[query,'']])
+      
+      else{
+         setPreavSearch(p=>[...prevSearch,[query,'']])
+      }
   }
 
   const handleLinkClick = (v)=>{
@@ -97,7 +102,7 @@ function Form({logoSection,savedIconSection}) {
                       
                            { query.length > 0 ? 
                            <RecomendedSearch handleLinkClick={handleLinkClick} prevSearch={prevSearch}/>:
-                           <SearchDrop prevSearch={prevSearch}/>}
+                           <SearchDrop handleLinkClick={handleLinkClick} prevSearch={prevSearch}/>}
 
                       </div>
                     </div>

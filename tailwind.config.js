@@ -14,7 +14,8 @@ export default {
         ...{'main':'#ffffff',
         'secondary':'#e9e9e9',
         'theme':'#e60023',
-        'hov':'#d4d4d4'
+        'hov':'#d4d4d4',
+        'hov2':'#7d7d7d'
         }
       },
     },
