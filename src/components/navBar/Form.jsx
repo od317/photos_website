@@ -1,7 +1,9 @@
 import React, { useState,useRef ,useEffect} from 'react'
 import {useSearchParams,NavLink,useNavigate} from 'react-router-dom'
 import Cookies from 'js-cookie'
-import { editCookie } from '../../data/data'
+import { editCookie,removeItem } from '../../data/data'
+import RecomendedSearch from './RecomendedSearch'
+import SearchDrop from './SearchDrop'
 
 function Form({logoSection,savedIconSection}) {
   const [searchparams,setSearchparams] = useSearchParams()
@@ -90,39 +92,14 @@ function Form({logoSection,savedIconSection}) {
                           </button>          
                     </form>
                     {show &&
-                    <div className='flex flex-row items-center justify-center w-full absolute z-[10]'> 
-                      <ul className='flex flex-col bg-main rounded-b-xl space-y-[.2%] z-[2]  py-[1%] w-[90%]'>
-                              {  prevSearch.length>0 ? 
-                                  <>
-                                  {prevSearch.map((v,i)=>{
-                                    if(v.length)
-                                    return(
-                                      <button onClick={()=>handleLinkClick(v)} key={v} className='w-full flex flex-row hover:bg-hov items-center px-[2%] py-[1%]'>
-                                      <svg
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        viewBox="0 0 24 24"
-                                        height="1em"
-                                        width="1em"
-                                      >
-                                        <path d="M19 11 A8 8 0 0 1 11 19 A8 8 0 0 1 3 11 A8 8 0 0 1 19 11 z" />
-                                        <path d="M21 21l-4.35-4.35" />
-                                      </svg>
-                                      <label className='ml-[1%]' htmlFor="">{v}</label>
-                                      </button>
-                                    )
-                                    return
-                                  })}
-                                  </>:
-                                  <>
-                                  <li className='w-full flex flex-row items-center px-[2%] py-[1%]'>
-                                        <label className='ml-[1%]' htmlFor="">what's in your mind</label>
-                                  </li>
-                                  </>}
-                      </ul>
+                    <div className='flex justify-center  w-full absolute z-[10]'>
+                      <div className='drop flex flex-row w-[95%] max-h-[40rem] overflow-y-scroll bg-main rounded-2xl'>
+                      
+                           { query.length > 0 ? 
+                           <RecomendedSearch handleLinkClick={handleLinkClick} prevSearch={prevSearch}/>:
+                           <SearchDrop prevSearch={prevSearch}/>}
+
+                      </div>
                     </div>
                     }
                 </div>
@@ -146,8 +123,6 @@ function Form({logoSection,savedIconSection}) {
     </NavLink>
     <button onClick={()=>{ 
       setShowSmall(p=>!p)
-      if(showSmall)
-      document.body.style.overflow = "scroll"
       }} className=' w-[20%] sm:hidden flex items-center justify-center'>
             <svg
               fill="none"
@@ -241,7 +216,7 @@ function Form({logoSection,savedIconSection}) {
 
      </div>
 
-     <div className='bg-black z-[5] fixed top-0 flex flex-row justify-center bg-opacity-40  h-[200vh] w-[100%]'>
+     <div className='bg-black z-[5] fixed top-0 flex flex-row justify-center bg-opacity-40  h-[100vh] w-[100%]'>
 
      </div>
 
