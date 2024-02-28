@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import {useSearchParams} from 'react-router-dom'
 import {fetchData} from '../../data/data'
 import {useInView} from 'react-intersection-observer'
-import { LazyLoadImage } from 'react-lazy-load-image-component'
-import 'react-lazy-load-image-component/src/effects/blur.css';
+import Masonry from './Masonry'
 
 let page = 0
+
 
 function Grid() {
   const [searchparams,setSearchParams] = useSearchParams()
@@ -47,19 +47,9 @@ useEffect(()=>{
     <>
       { true ? 
         <>
-        <div className=' mt-[2%] sm:mt-[0%] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5  gap-x-[1%] gap-y-[.5rem] sm:gap-y-[.7rem]'>
-            {data.map((v,i)=>{
-                    return(
-                        <div key={v.id} style={{backgroundColor:v.color}} className=' bg-cover w-full overflow-hidden pb-[150%] relative bg-center'>
-                                  <LazyLoadImage
-                                    className='absolute w-full max-w-[200rem] h-full'
-                                    alt={v.alt}
-                                    src={v.urls.small} 
-                                     />
-                        </div>
-                    )
-            })}
-        </div>
+
+        <Masonry data={data}></Masonry>
+
         <div className='w-full flex items-center z-[1] col-span-5 mb-[15%] sm:mb-[5%] mt-[5%] justify-center relative ' >
                 <span ref={ref} className='bg-gray-600 p-[2%] sm:p-[.8%]  animate-spin rounded-full'>
                 <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" version="1.0" enableBackground="new 0 0 64 64">
