@@ -17,7 +17,7 @@ function Form({logoSection,savedIconSection}) {
   const sdropDownref = useRef(null)
   const inputRef = useRef(null)
 
-  const handleSubmit = (e)=>{
+const handleSubmit = (e)=>{
       e.preventDefault()
       if(inputRef.current)
       inputRef.current.blur()
@@ -33,9 +33,9 @@ function Form({logoSection,savedIconSection}) {
       else{
          setPreavSearch(p=>[...prevSearch,[query,'']])
       }
-  }
+}
 
-  const handleLinkClick = (v)=>{
+const handleLinkClick = (v)=>{
         if(inputRef.current)
         inputRef.current.blur()
         setShow(false)
@@ -51,21 +51,9 @@ function Form({logoSection,savedIconSection}) {
               setShow(false)
             }
       }
-
-      const handleClickOutSideSmall = (event)=>{
-        if(sdropDownref.current&&!sdropDownref.current.contains(event.target)){
-             setShowSmall(false)
-             setShowSmallDrop(false)
-        }
-  }
-
       document.addEventListener("mousedown", handleClickOutSideDropDown)
-      document.addEventListener("mousedown", handleClickOutSideSmall)
-
       return () => {
         document.removeEventListener("mousedown", handleClickOutSideDropDown)
-        document.removeEventListener("mousedown", handleClickOutSideSmall)
-
       }
   },[])
 
@@ -149,10 +137,10 @@ function Form({logoSection,savedIconSection}) {
 
 
      {showSmall&&<>
-     <div ref={sdropDownref} className='sm:hidden fixed w-full pb-[50%] top-0 z-[10] bg-main flex flex-col'>
+                    <div ref={sdropDownref} className='sm:hidden fixed w-full pb-[50%] top-0 z-[10] bg-main flex flex-col'>
                  
                     <div className=' relative py-[1%]'>
-                    <form onSubmit={handleSubmit} className='    w-full flex flex-row  px-[2%] py-[1%] text-[110%] rounded-full' action="">
+                    <form onSubmit={handleSubmit} className='w-full flex flex-row  px-[2%] py-[1%] text-[110%] rounded-full' action="">
                         <input ref={inputRef} onFocus={()=>{
                           setShowSmallDrop(true)
                           }} 
