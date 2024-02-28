@@ -169,7 +169,7 @@ function Form({logoSection,savedIconSection}) {
                           </button> }         
                     </form>
                     
-                    { showSmallDrop && <div className=' absolute h-screen bg-main w-full  '>
+                    { showSmallDrop && <div className=' absolute h-screen z-4 bg-main w-full  '>
                                 {  prevSearch.length>0 ? 
                                   <>
                                   {prevSearch.map((v,i)=>{
@@ -189,7 +189,7 @@ function Form({logoSection,savedIconSection}) {
                                         <path d="M19 11 A8 8 0 0 1 11 19 A8 8 0 0 1 3 11 A8 8 0 0 1 19 11 z" />
                                         <path d="M21 21l-4.35-4.35" />
                                       </svg>
-                                      <label className='ml-[1%]' htmlFor="">{v}</label>
+                                      <label className='ml-[1%]' htmlFor="">{v[0]}</label>
                                       </button>
                                     )
                                     return
@@ -205,16 +205,12 @@ function Form({logoSection,savedIconSection}) {
 
                     </div>
 
-                    <div className='flex flex-col items-center justify-center w-full'>
+                    <div className='flex flex-col items-center z-3 justify-center w-full'>
               
                          <label className='flex items-center justify-center mt-[2%] mb-[5%]'>ideas for you</label>
 
-                         <div className='flex flex-wrap items-center justify-evenly w-full'>
-                                     <div className='w-[45%] pb-[30%] bg-red-500 mb-[5%]'></div>
-                                     <div className='w-[45%] pb-[30%] bg-red-500 mb-[5%]'></div>
-                                     <div className='w-[45%] pb-[30%] bg-red-500'></div>
-                                     <div className='w-[45%] pb-[30%] bg-red-500'></div>
-                         </div>
+                         <SearchDrop handleLinkClick={handleLinkClick} prevSearch={prevSearch}/>
+
 
                     </div>
                

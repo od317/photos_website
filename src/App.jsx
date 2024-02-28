@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import NavBar from './components/navBar/NavBar'
 
 function App() {
+  
   return (
     <>
       <NavBar></NavBar>

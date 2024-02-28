@@ -11,12 +11,13 @@ export const fetchData = async (query,pagenum)=>{
     }
     const res = await fetch(`https://api.unsplash.com/photos/?client_id=${AccessKey}&per_page=10&page=${pagenum}`)
     const data = await res.json()
+    console.log(data)
     return data
 }
 
 export const editCookie = (query,img)=>{
             // ps preacSearch
-            img = img.urls.raw
+            img = img.urls.small
             let ps = Cookies.get('prevSearch') || ''
             if(checkDuplicate(query,formatCookies(ps))){
                 console.log('already exist')
@@ -30,7 +31,6 @@ export const editCookie = (query,img)=>{
             else
                ps = [...ps,cur]
             Cookies.set('prevSearch', ps , { expires: 7 })
-            // Cookies.remove('prevSearch')
             return ps
 }
 
