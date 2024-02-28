@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import {useSearchParams} from 'react-router-dom'
 import {fetchData} from '../../data/data'
 import {useInView} from 'react-intersection-observer'
-import {Img} from 'react-image'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
+
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 let page = 0
@@ -51,10 +51,8 @@ function Grid() {
             {data.map((v,i)=>{
                     return(
                         <div key={v.id} style={{backgroundColor:v.color}} className=' bg-cover overflow-hidden pb-[150%] relative bg-center'>
-                             {/* <Img src={v.urls.small} loader={<>
-                             </>} className='max-w-[200rem] h-full absolute' alt="" /> */}
                                   <LazyLoadImage
-                                    className='absolute w-full'
+                                    className='absolute max-[200rem] h-full'
                                     alt={v.alt}
                                     src={v.urls.small} 
                                      />
