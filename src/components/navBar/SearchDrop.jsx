@@ -5,7 +5,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 function SearchDrop({prevSearch,handleLinkClick}) {
     const data = prevSearch.filter((v,i)=>v[0].length>0).slice(-6)
     return (
-    <div className='p-[2%] flex flex-col w-full h-screen'>
+    <div className='p-[2%] flex flex-col w-full h-screen sm:h-auto'>
 
             <label className='w-full text-[100%]' htmlFor="">ideas for you</label>
      
