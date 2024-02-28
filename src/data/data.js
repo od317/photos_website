@@ -4,12 +4,12 @@ const AccessKey = 'Tj7kO8KhPyJ1xonByecV2i6py0mranMD8W18AzR_uWI'
 
 export const fetchData = async (query,pagenum)=>{
     if(query.length>0){
-        const res = await fetch(`https://api.unsplash.com/search/photos?client_id=${AccessKey}&per_page=20&page=${pagenum}&&query=${query}`)
+        const res = await fetch(`https://api.unsplash.com/search/photos?client_id=${AccessKey}&per_page=15&page=${pagenum}&&query=${query}`)
         const data = await res.json()
         editCookie(query,data.results[0])
         return data.results
     }
-    const res = await fetch(`https://api.unsplash.com/photos/?client_id=${AccessKey}&per_page=20&page=${pagenum}`)
+    const res = await fetch(`https://api.unsplash.com/photos/?client_id=${AccessKey}&per_page=15&page=${pagenum}`)
     const data = await res.json()
     console.log(data)
     return data

@@ -32,8 +32,7 @@ const getMin = (vals)=>{
 } 
 
 
-function getVals(w){
-         
+export function getVals(w){
           if(w>=1024)
            return [[0,0,0,0,0],20]
          
