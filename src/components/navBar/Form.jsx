@@ -169,7 +169,7 @@ function Form({logoSection,savedIconSection}) {
                           </button> }         
                     </form>
                     
-                    { showSmallDrop && <div className=' absolute h-screen z-4 bg-main w-full  '>
+                    { showSmallDrop && <div className=' absolute h-screen z-[9] bg-main w-full  '>
                                 {  prevSearch.length>0 ? 
                                   <>
                                   {prevSearch.map((v,i)=>{

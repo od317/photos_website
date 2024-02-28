@@ -47,10 +47,10 @@ function Grid() {
   return (
     <>
       { true ? 
-        <div className=' mt-[2%] sm:mt-[0%] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-[1%] gap-y-[1rem]'>
+        <div className=' mt-[2%] sm:mt-[0%] flex flex-wrap gap-x-[1%] gap-y-[1rem]'>
             {data.map((v,i)=>{
                     return(
-                        <div key={v.id} style={{backgroundColor:v.color}} className=' bg-cover overflow-hidden pb-[150%] relative bg-center'>
+                        <div key={v.id} style={{backgroundColor:v.color}} className=' bg-cover w-[49%] overflow-hidden pb-[100%] relative bg-center'>
                                   <LazyLoadImage
                                     className='absolute max-[200rem] h-full'
                                     alt={v.alt}
