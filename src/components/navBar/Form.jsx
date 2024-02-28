@@ -104,19 +104,9 @@ const handleLinkClick = (v)=>{
 
 
     <nav className='sm:hidden z-[20] fixed bottom-0 w-full flex justify-evenly bg-secondary py-[1%] flex-row'>
-    <NavLink to={'/'} className=' w-[20%] flex items-center justify-center'>
-      <svg fill="none" viewBox="0 0 24 24" height="2em" width="2em" >
-        <path
-          fill="currentColor"
-          fillRule="evenodd"
-          d="M21 8.772l-6.98-6.979a3 3 0 00-4.242 0L3 8.571v14.515h7v-6a2 2 0 114 0v6h7V8.772zm-9.808-5.565L5 9.4v11.686h3v-4a4 4 0 018 0v4h3V9.6l-6.393-6.394a1 1 0 00-1.415 0z"
-          clipRule="evenodd"
-        />
-      </svg>
-    </NavLink>
     <button onClick={()=>{ 
       setShowSmall(p=>!p)
-      }} className=' w-[20%] sm:hidden flex items-center justify-center'>
+      }} className=' w-[33.3%] sm:hidden flex items-center justify-center'>
             <svg
               fill="none"
               stroke="currentColor"
@@ -131,8 +121,26 @@ const handleLinkClick = (v)=>{
               <path d="M21 21l-4.35-4.35" />
             </svg>
     </button>
-    <button className='w-[20%]'>1</button>
-    <button className='w-[20%]'>1</button>
+    <NavLink to={'/'} className=' w-[33.3%] flex items-center justify-center'>
+      <svg fill="none" viewBox="0 0 24 24" height="2em" width="2em" >
+        <path
+          fill="currentColor"
+          fillRule="evenodd"
+          d="M21 8.772l-6.98-6.979a3 3 0 00-4.242 0L3 8.571v14.515h7v-6a2 2 0 114 0v6h7V8.772zm-9.808-5.565L5 9.4v11.686h3v-4a4 4 0 018 0v4h3V9.6l-6.393-6.394a1 1 0 00-1.415 0z"
+          clipRule="evenodd"
+        />
+      </svg>
+    </NavLink>
+    <NavLink to={'/saved'} className='w-[33.3%]  flex items-center justify-center mx-[1%] rounded-full text-center py-[.9%] text-white'>
+        <svg
+          fill="#e60023"
+          viewBox="0 0 16 16"
+          height="2em"
+          width="2em"
+        >
+        <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 01-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z" />
+        </svg>
+    </NavLink>
     </nav>
 
 
