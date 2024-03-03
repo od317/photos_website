@@ -9,6 +9,9 @@ function Masonry({data}) {
   useEffect(()=>{
        const wChange = ()=>{
         setW(window.innerWidth)
+        if(window.innerWidth>=640){
+           document.body.style.overflowY = "scroll"
+        }
         setPer(getVals(window.innerWidth))
     }
        window.addEventListener('resize',wChange)

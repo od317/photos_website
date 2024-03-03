@@ -7,7 +7,7 @@ import Masonry from './Masonry'
 let page = 0
 
 
-function Grid() {
+function Grid({query2,src}) {
   const [searchparams,setSearchParams] = useSearchParams()
   const [fetching,setFetching] = useState(false)
   const [data,setData] = useState([])
@@ -15,7 +15,7 @@ function Grid() {
     threshold: 0,
   })
 
-  const query = searchparams.get('query') || ''
+  const query = searchparams.get('query') || query2 || ''
   
   useEffect(()=>{
     if(inView&&!fetching){
@@ -23,7 +23,7 @@ function Grid() {
       console.log('fetching')
       let newData = []
       setFetching(true)
-      fetchData(query,page).then(res=>{
+      fetchData(query,page,src).then(res=>{
         newData = res
         setData(p=>[...p,...newData])
         setFetching(false)
@@ -35,7 +35,7 @@ useEffect(()=>{
   page=0
   setFetching(true)
   setData([])
-  fetchData(query,page).then(res=>{
+  fetchData(query,page,src).then(res=>{
     let newData = res
     setData(p=>[...newData])
     setFetching(false)

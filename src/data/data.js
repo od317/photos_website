@@ -2,11 +2,12 @@ import Cookies from 'js-cookie'
 
 const AccessKey = 'Tj7kO8KhPyJ1xonByecV2i6py0mranMD8W18AzR_uWI'
 
-export const fetchData = async (query,pagenum)=>{
+export const fetchData = async (query,pagenum,src)=>{
     if(query.length>0){
         const res = await fetch(`https://api.unsplash.com/search/photos?client_id=${AccessKey}&per_page=15&page=${pagenum}&&query=${query}`)
         const data = await res.json()
-        editCookie(query,data.results[0])
+        if(src&&src=='searchPage')
+           editCookie(query,data.results[0])
         return data.results
     }
     const res = await fetch(`https://api.unsplash.com/photos/?client_id=${AccessKey}&per_page=15&page=${pagenum}`)
@@ -16,7 +17,6 @@ export const fetchData = async (query,pagenum)=>{
 
 export const getPhoto = async (id)=>{
     const res = await fetch(`https://api.unsplash.com/photos/${id}/?client_id=${AccessKey}`)
-    console.log(`https://api.unsplash.com/photos/${id}/?client_id=${AccessKey}`)
     const photo = await res.json()
     return photo
 }
@@ -26,7 +26,6 @@ export const editCookie = (query,img)=>{
             img = img.urls.small
             let ps = Cookies.get('prevSearch') || ''
             if(checkDuplicate(query,formatCookies(ps))){
-                console.log('already exist')
                 return []
             }
             ps = ps.split(',')
@@ -43,11 +42,10 @@ export const editCookie = (query,img)=>{
 export const removeItem = (item)=>{
        let ps = Cookies.get('prevSearch') || ''
        ps = ps.split(',')
-       console.log('before',ps)
        ps = ps.filter((v)=>{
-              return v!== item
+              return v.split('++++')[0]!== item
        })
-       console.log('after',ps)       
+       Cookies.set('prevSearch', ps , { expires: 7 })
 }
 
 export const checkDuplicate = (q,arr)=>{
@@ -56,7 +54,6 @@ export const checkDuplicate = (q,arr)=>{
         if(v[0]===q)
           match = true
     })
-    console.log(match)    
     return match
 }
 
@@ -67,6 +64,15 @@ export const formatCookies = (arr)=>{
        return v.split('++++')
        })
        return arr
+}
+
+
+export const savePhoto = (photo)=>{
+       
+}
+
+export const removePhoto = (photo)=>{
+
 }
 
 // const photo = 

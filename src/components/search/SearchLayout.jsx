@@ -4,7 +4,7 @@ import Grid from '../grid/Grid'
 function SearchLayout() {
   return (
     <>
-      <Grid></Grid>
+      <Grid src={'searchPage'}></Grid>
     </>
   )
 }

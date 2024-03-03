@@ -35,6 +35,11 @@ const handleSubmit = (e)=>{
       }
 }
 
+const handlePrevSearchChange = (v)=>{
+      removeItem(v)
+      setPreavSearch(formatCookies(Cookies.get('prevSearch')))
+}
+
 const handleLinkClick = (v)=>{
         if(inputRef.current)
         inputRef.current.blur()
@@ -89,7 +94,7 @@ const handleLinkClick = (v)=>{
                       <div className='drop flex flex-row w-[95%] max-h-[40rem] overflow-y-scroll bg-main rounded-2xl'>
                       
                            { query.length > 0 ? 
-                           <RecomendedSearch handleLinkClick={handleLinkClick} prevSearch={prevSearch}/>:
+                           <RecomendedSearch handlePrevSearchChange={handlePrevSearchChange} handleLinkClick={handleLinkClick} prevSearch={prevSearch}/>:
                            <SearchDrop handleLinkClick={handleLinkClick} prevSearch={prevSearch}/>}
 
                       </div>
@@ -104,8 +109,12 @@ const handleLinkClick = (v)=>{
 
 
     <nav className='sm:hidden z-[20] fixed bottom-0 w-full flex justify-evenly bg-secondary py-[1%] flex-row'>
-    <button onClick={()=>{ 
+    <button onClick={()=>{
+
       setShowSmall(p=>!p)
+      document.body.style.overflowY = "hidden"
+      if(showSmall)
+      document.body.style.overflowY = "scroll"
       }} className=' w-[33.3%] sm:hidden flex items-center justify-center'>
             <svg
               fill="none"
@@ -145,7 +154,7 @@ const handleLinkClick = (v)=>{
 
 
      {showSmall&&<>
-                    <div ref={sdropDownref} className='sm:hidden fixed w-full pb-[50%] top-0 z-[10] bg-main flex flex-col'>
+                    <div ref={sdropDownref} className='sm:hidden sticky top-0 h-screen overflow-y-scroll drop w-full  z-[10] bg-main flex flex-col'>
                  
                     <div className=' relative py-[1%]'>
                     <form onSubmit={handleSubmit} className='w-full flex flex-row  px-[2%] py-[1%] text-[110%] rounded-full' action="">
@@ -171,7 +180,9 @@ const handleLinkClick = (v)=>{
                                   {prevSearch.map((v,i)=>{
                                     if(v.length)
                                     return(
-                                      <button onClick={()=>handleLinkClick(v)} key={v} className='w-full flex flex-row hover:bg-hov items-center px-[4%] py-[1%]'>
+
+                                      <div key={v[0]} className='flex flex-row justify-between items-center pr-[2%] sm:hover:bg-hov rounded-2xl'>
+                                      <button onClick={()=>handleLinkClick(v)}  className='w-full flex flex-row  items-center px-[4%] py-[1%]'>
                                       <svg
                                         fill="none"
                                         stroke="currentColor"
@@ -187,6 +198,20 @@ const handleLinkClick = (v)=>{
                                       </svg>
                                       <label className='ml-[1%]' htmlFor="">{v[0]}</label>
                                       </button>
+
+                                      <button className='sm:hover:bg-hov2 p-[.5%] rounded-full w-fit h-fit' 
+                                      onClick={()=>handlePrevSearchChange(v[0])}
+                                      >
+                                      <svg
+                                      viewBox="0 0 1024 1024"
+                                      fill="currentColor"
+                                      height="1em"
+                                      width="1em"
+                                      >
+                                      <path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 00203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z" />
+                                      </svg>
+                                      </button>
+                                      </div>
                                     )
                                     return
                                   })}
@@ -201,7 +226,7 @@ const handleLinkClick = (v)=>{
 
                     </div>
 
-                    <div className='flex flex-col items-center z-3 justify-center w-full'>
+                    <div className='flex flex-col items-center  overflow-y-scroll drop z-3 justify-start w-full'>
               
                          <label className='flex items-center justify-center mt-[2%] mb-[5%]'>ideas for you</label>
 
@@ -213,9 +238,7 @@ const handleLinkClick = (v)=>{
 
      </div>
 
-     <div className='bg-black z-[5] fixed top-0 flex flex-row justify-center bg-opacity-40  h-[100vh] w-[100%]'>
 
-     </div>
 
      </>
      }
