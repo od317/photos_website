@@ -46,7 +46,7 @@ useEffect(()=>{
   return (
     <>
       { true ? 
-        <>
+        <div className='px-[2%] sm:px-[0%]'>
 
         <Masonry data={data}></Masonry>
 
@@ -64,7 +64,7 @@ useEffect(()=>{
                 </svg>
                 </span>
         </div>
-        </>
+        </div>
         : <div> no results found </div>
       }
     </>

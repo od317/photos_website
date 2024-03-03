@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <NavBar></NavBar>
-      <div className='px-[2%]'>
+      <div className='sm:px-[2%]'>
           <Routes>
                 <Route element={<Home/>} path='/'/>
                 <Route element={<Search/>} path='/search'/>

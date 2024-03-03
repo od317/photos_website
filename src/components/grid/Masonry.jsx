@@ -17,7 +17,7 @@ function Masonry({data}) {
        }
   },[w])
   return (
-    <div style={{height:`${height}px`}} className=' overflow-hidden  relative'>
+    <div style={{height:`${height}px`}} className=' overflow-hidden relative'>
                   {data.map((v,i)=>{
                     return(
                         // ,height:`${(v.height*((((w*96/100)*per/100)/v.width)*100))/100}px`
