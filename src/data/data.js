@@ -15,6 +15,10 @@ export const fetchData = async (query,pagenum)=>{
     return data
 }
 
+export const getPhoto = async (id)=>{
+             
+}
+
 export const editCookie = (query,img)=>{
             // ps preacSearch
             img = img.urls.small

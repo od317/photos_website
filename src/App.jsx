@@ -3,6 +3,7 @@ import {Routes,Route} from 'react-router-dom'
 import Search from './pages/Search'
 import Home from './pages/Home'
 import NavBar from './components/navBar/NavBar'
+import Photo from './pages/Photo'
 
 function App() {
   
@@ -13,6 +14,7 @@ function App() {
           <Routes>
                 <Route element={<Home/>} path='/'/>
                 <Route element={<Search/>} path='/search'/>
+                <Route element={<Photo/>} path='/photo/:id'/>
           </Routes>
       </div>
     </>
