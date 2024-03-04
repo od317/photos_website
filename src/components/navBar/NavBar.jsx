@@ -1,7 +1,8 @@
 import {Link, NavLink} from 'react-router-dom'
-import React from 'react'
+import React, { useEffect,useState} from 'react'
 import Form from './Form'
 function NavBar() {
+  const [y,setY] = useState(window.pageYOffset)
   const logoSection = (<>
   <NavLink to={'/'} className='z-[10]'>
       <svg 
@@ -25,8 +26,18 @@ function NavBar() {
                </svg>
            </NavLink>
   </>)
+  useEffect(()=>{
+     const handleYScroll = ()=>{
+           setY(window.pageYOffset)
+           console.log(window.pageYOffset)
+     }
+     window.addEventListener('scroll',handleYScroll)
+     return()=>{
+     window.removeEventListener('scroll',handleYScroll)
+     }
+  },[y])
   return (<>
-    <Form logoSection={logoSection} savedIconSection={savedIconSection}></Form>
+    <Form y={y} logoSection={logoSection} savedIconSection={savedIconSection}></Form>
     </>
   )
 }

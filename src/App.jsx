@@ -4,7 +4,8 @@ import Search from './pages/Search'
 import Home from './pages/Home'
 import NavBar from './components/navBar/NavBar'
 import Photo from './pages/Photo'
-
+import SavedLayout from './components/saved/SavedLayout'
+import NotFound from './components/noFound/NotFound'
 function App() {
   
   return (
@@ -15,6 +16,8 @@ function App() {
                 <Route element={<Home/>} path='/'/>
                 <Route element={<Search/>} path='/search'/>
                 <Route element={<Photo/>} path='/photo/:id'/>
+                <Route element={<SavedLayout/>} path='/saved'/>
+                <Route element={<NotFound/>} path='/*'/>
           </Routes>
       </div>
     </>

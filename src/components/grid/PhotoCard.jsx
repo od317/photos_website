@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink,Navigate, useNavigate} from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-function PhotoCard({photo}) {
+import { savePhoto ,checkPhotoSaved, removePhoto} from '../../data/data'
+function PhotoCard({photo,handleDataChange}) {
+  const [saved,setSaved] = useState(checkPhotoSaved(photo))
   const navigate = useNavigate()
   const userPhoto = photo.user.profile_image.small 
   const userName =  photo.user.username
@@ -18,9 +20,20 @@ function PhotoCard({photo}) {
                     <LazyLoadImage
                      className='rounded-full'
                      src={userPhoto}/>
+                    {!saved ? 
                     <button onClick={()=>{
-                      console.log('save')
-                    }} className='bg-theme rounded-3xl cursor-pointer w-[30%]  self-end py-[4%] px-[5%]'>save</button>
+                      savePhoto(photo)
+                      setSaved(true)
+                    }} className={` bg-theme rounded-3xl cursor-pointer w-[30%]  self-end py-[4%] px-[5%]`}>save</button>
+                    :
+                    <button onClick={()=>{
+                       removePhoto(photo)
+                       setSaved(false)
+                       if(handleDataChange){
+                          handleDataChange(photo)
+                       }
+                    }} className={` bg-black rounded-3xl cursor-pointer w-[30%]  self-end py-[4%] px-[5%]`}>saved</button>
+                    }
                 </div>
                
                 <label className=' hidden md:block cursor-pointer z-[2]' htmlFor="">{userName}</label>

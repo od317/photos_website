@@ -6,7 +6,7 @@ function RecomendedSearch({handleLinkClick,prevSearch,handlePrevSearchChange}) {
   return (
     <div className='p-[1%] w-full'> 
     <ul className='flex flex-col w-full rounded-b-xl space-y-[.2%] z-[2]  py-[1%] '>
-            {  prevSearch.length>0 ? 
+            {  prevSearch.length>1 ? 
                 <>
                 {prevSearch.map((v,i)=>{
                   if(v[0].length)

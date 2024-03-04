@@ -5,7 +5,7 @@ import { checkDuplicate, editCookie,formatCookies,removeItem } from '../../data/
 import RecomendedSearch from './RecomendedSearch'
 import SearchDrop from './SearchDrop'
 
-function Form({logoSection,savedIconSection}) {
+function Form({logoSection,savedIconSection,y}) {
   const [searchparams,setSearchparams] = useSearchParams()
   const [query,setQuery] = useState(searchparams.get('query')||'')
   const [show,setShow] = useState(false)
@@ -63,7 +63,7 @@ const handleLinkClick = (v)=>{
   },[])
 
   return (<>
-  <div className=' hidden sm:block sticky top-0 z-[10] bg-white'>
+  <div className={` ${y>40? 'shadow-[rgba(13,_38,_76,_0.19)_0px_9px_20px]':''} hidden sm:block sticky top-0 z-[10] bg-white`}>
         <div className=' hidden sm:block relative'>
             <div className=' flex flex-row w-full items-center px-[2%] justify-evenly py-[1%]  relative '>
                 {logoSection}
