@@ -9,7 +9,7 @@ function RecomendedSearch({handleLinkClick,prevSearch,handlePrevSearchChange}) {
             {  prevSearch.length>1 ? 
                 <>
                 {prevSearch.map((v,i)=>{
-                  if(v[0].length)
+                  if(v[0].length>0)
                   return(
                     <div key={v[0]} className='flex flex-row justify-between items-center pr-[2%] sm:hover:bg-hov rounded-2xl'>
                   

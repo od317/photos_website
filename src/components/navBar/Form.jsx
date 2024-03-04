@@ -23,6 +23,7 @@ const handleSubmit = (e)=>{
       inputRef.current.blur()
       setShow(false)
       setShowSmall(false)
+      document.body.style.overflowY = "scroll"
       setShowSmallDrop(false)
       navigate(`/search?query=${query}`)
       if(checkDuplicate(query,prevSearch))
@@ -43,6 +44,7 @@ const handlePrevSearchChange = (v)=>{
 const handleLinkClick = (v)=>{
         if(inputRef.current)
         inputRef.current.blur()
+        document.body.style.overflowY = "scroll"
         setShow(false)
         setShowSmall(false)
         setShowSmallDrop(false)
@@ -178,7 +180,7 @@ const handleLinkClick = (v)=>{
                                 {  prevSearch.length>0 ? 
                                   <>
                                   {prevSearch.map((v,i)=>{
-                                    if(v.length)
+                                    if(v[0].length>0)
                                     return(
 
                                       <div key={v[0]} className='flex flex-row justify-between items-center pr-[2%] sm:hover:bg-hov rounded-2xl'>

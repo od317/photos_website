@@ -29,7 +29,6 @@ function NavBar() {
   useEffect(()=>{
      const handleYScroll = ()=>{
            setY(window.pageYOffset)
-           console.log(window.pageYOffset)
      }
      window.addEventListener('scroll',handleYScroll)
      return()=>{
