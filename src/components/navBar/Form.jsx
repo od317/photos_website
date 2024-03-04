@@ -228,8 +228,7 @@ const handleLinkClick = (v)=>{
 
                     <div className='flex flex-col items-center  overflow-y-scroll drop z-3 justify-start w-full'>
               
-                         <label className='flex items-center justify-center mt-[2%] mb-[5%]'>ideas for you</label>
-
+``
                          <SearchDrop handleLinkClick={handleLinkClick} prevSearch={prevSearch}/>
 
 
