@@ -125,7 +125,7 @@ const handleLinkClick = (v)=>{
               <path d="M21 21l-4.35-4.35" />
             </svg>
     </button>
-    <NavLink to={'/'} className=' w-[33.3%] flex items-center justify-center'>
+    <NavLink to={'/'} className={({isActive})=>` ${isActive ? 'bg-hov':''} p-[2%] transition-all duration-200 rounded-full flex items-center justify-center`}>
       <svg fill="none" viewBox="0 0 24 24" height="2em" width="2em" >
         <path
           fill="currentColor"
@@ -137,7 +137,7 @@ const handleLinkClick = (v)=>{
     </NavLink>
     <NavLink to={'/saved'} className='w-[33.3%]  flex items-center justify-center mx-[1%] rounded-full text-center py-[.9%] text-white'>
         <svg
-          fill="#e60023"
+          fill="#eb3c31"
           viewBox="0 0 16 16"
           height="2em"
           width="2em"

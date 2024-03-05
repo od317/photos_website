@@ -15,7 +15,7 @@ function PhotoCard({photo,handleDataChange,h}) {
         <div className='relative min-h-[90%] rounded-2xl' style={{backgroundColor:photo.color}}>
         <div className=' absolute cursor-pointer text-white w-full h-full z-[3] bg-black sm:opacity-[0%] bg-opacity-[0%] transition-all duration-200
         sm:hover:bg-opacity-[50%] sm:hover:opacity-[100%]  p-[2%] rounded-2xl'>
-            <div className=' relative flex flex-col h-full pb-[1%] justify-between '>
+            <div className=' relative flex flex-col h-full pb-[1%] items justify-between '>
                 <div className='flex flex-row justify-between z-[3] items-center'>
                     <LazyLoadImage
                      className='rounded-full w-[18%]'
@@ -24,9 +24,9 @@ function PhotoCard({photo,handleDataChange,h}) {
                     <button onClick={()=>{
                       savePhoto(photo)
                       setSaved(true)
-                    }} className={`rounded-3xl cursor-pointer w-[30%] flex items-start justify-end self-end `}>
+                    }} className={`rounded-3xl cursor-pointer w-[30%] h-full flex items-start justify-end self-end `}>
                             <svg
-                              fill="#e60023"
+                              fill="#eb3c31"
                               viewBox="0 0 16 16"
                               height="2em"
                               width="2em"
@@ -41,9 +41,9 @@ function PhotoCard({photo,handleDataChange,h}) {
                        if(handleDataChange){
                           handleDataChange(photo)
                        }
-                    }} className={`  rounded-3xl cursor-pointer w-[30%] flex items-start justify-end self-end`}>
+                    }} className={`  rounded-3xl cursor-pointer w-[30%] h-full flex items-start justify-end self-end`}>
                                 <svg
-                                  fill="#e60023"
+                                  fill="#eb3c31"
                                   viewBox="0 0 16 16"
                                   height="2em"
                                   width="2em"

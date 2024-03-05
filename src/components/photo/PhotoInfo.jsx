@@ -9,8 +9,8 @@ function PhotoInfo({photo}) {
        <>
             <div className='sm:w-[50%] p-[2%] h-full flex flex-col'>
                   
-                  <div className='flex flex-row  justify-between'>
-                  <button onClick={()=>{
+                  <div className='flex flex-row  justify-end'>
+                  {/* <button onClick={()=>{
                     downloadImage(photo.links.download)
                   }}>
                         <svg
@@ -24,7 +24,7 @@ function PhotoInfo({photo}) {
                           d="M7.47 10.78a.75.75 0 001.06 0l3.75-3.75a.75.75 0 00-1.06-1.06L8.75 8.44V1.75a.75.75 0 00-1.5 0v6.69L4.78 5.97a.75.75 0 00-1.06 1.06l3.75 3.75zM3.75 13a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5z"
                         />
                         </svg>
-                  </button>
+                  </button> */}
 
                   {!saved ? 
                   <button onClick={()=>{

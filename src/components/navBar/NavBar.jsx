@@ -17,7 +17,7 @@ function NavBar() {
   const savedIconSection = (<>
            <NavLink to={'/saved'} className='w-[5%]  flex items-center justify-center mx-[1%] rounded-full text-center py-[.9%] text-white'>
                 <svg
-                  fill="#e60023"
+                  fill="#eb3c31"
                   viewBox="0 0 16 16"
                   height="2em"
                   width="2em"
