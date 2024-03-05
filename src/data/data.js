@@ -51,7 +51,7 @@ export const removeItem = (item)=>{
 export const checkDuplicate = (q,arr)=>{
     let match = false
     arr.forEach((v,i)=> {
-        if(v[0]===q)
+        if(v[0].toLowerCase()===q.toLowerCase())
           match = true
     })
     return match
