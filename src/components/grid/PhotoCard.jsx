@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { NavLink,Navigate, useNavigate} from 'react-router-dom'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 import { savePhoto ,checkPhotoSaved, removePhoto} from '../../data/data'
-function PhotoCard({photo,handleDataChange}) {
+function PhotoCard({photo,handleDataChange,h}) {
   const [saved,setSaved] = useState(checkPhotoSaved(photo))
   const navigate = useNavigate()
   const userPhoto = photo.user.profile_image.small 
@@ -11,7 +11,7 @@ function PhotoCard({photo,handleDataChange}) {
         navigate(`/photo/${id}`)
   }
   return (
-    <div style={{height:`100%`}} className='w-full p-[1%]'>
+    <div  className='w-full p-[1%]'>
         <div className='relative min-h-[90%] rounded-2xl' style={{backgroundColor:photo.color}}>
         <div className=' absolute cursor-pointer text-white w-full h-full z-[3] bg-black sm:opacity-[0%] bg-opacity-[0%] transition-all duration-200
         sm:hover:bg-opacity-[50%] sm:hover:opacity-[100%]  p-[2%] rounded-2xl'>
@@ -46,6 +46,8 @@ function PhotoCard({photo,handleDataChange}) {
         <LazyLoadImage
             className='rounded-2xl z-[2]'
             alt={photo.alt}
+            height={photo.height}
+            width={photo.width}
             src={photo.urls.small} 
             />
         </div>

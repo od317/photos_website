@@ -26,7 +26,7 @@ function Masonry({data,handleDataChange}) {
                         // ,height:`${(v.height*((((w*96/100)*per/100)/v.width)*100))/100}px`
                         <div key={v.id+""+i} style={{height:`${((v.height*((((w*96/100)*per/100)/v.width)*100))/100)}px`,transform:`translateX(${arr[i][0]*100}%) translateY(${arr[i][1]}px)`}} 
                         className=' absolute transition-all duration-75 w-[50%] sm:w-[33%] md:w-[25%] lg:w-[20%]  bg-center'>
-                                <PhotoCard handleDataChange={handleDataChange} photo={v}></PhotoCard>
+                                <PhotoCard h={((v.height*((((w*96/100)*per/100)/v.width)*100))/100)} handleDataChange={handleDataChange} photo={v}></PhotoCard>
                         </div>
                     )
             })}

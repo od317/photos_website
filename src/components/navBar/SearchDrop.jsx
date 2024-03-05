@@ -21,6 +21,7 @@ function SearchDrop({prevSearch,handleLinkClick}) {
                                     alt={v[0]}
                                     src={v[1]} 
                                   />
+                                  <label className='text-white absolute flex items-center bg-black bg-opacity-30 justify-center w-full h-full sm:hidden' htmlFor="">{v[0]}</label>
                               </div>
                               <label className='p-[2%] hidden cursor-pointer bg-hov group-hover:bg-hov2 w-[60%] rounded-r-xl h-full sm:flex items-center' htmlFor="">{v[0]}</label>
                       </button>)
@@ -35,11 +36,11 @@ function SearchDrop({prevSearch,handleLinkClick}) {
                             return(<button onClick={()=>handleLinkClick(v.name)} className='w-[100%] cursor-pointer group flex flex-row mt-[5%]  items-center' key={v.name+" "+i}>
                                     <div className=' w-full pb-[60%] overflow-hidden sm:w-[40%] cursor-pointer bg-hov group-hover:bg-hov2 bg-cover bg-center relative sm:pb-[42%] rounded-l-xl rounded-r-xl md:rounded-r-[0]'>
                                         <LazyLoadImage
-                                          className='absolute w-full h-full rounded-l-xl rounded-r-xl sm:rounded-r-[0]'
+                                          className='absolute w-full min-h-full rounded-l-xl rounded-r-xl sm:rounded-r-[0px]'
                                           alt={v.name}
                                           src={v.photo} 
                                         />
-                                        <label htmlFor=""></label>
+                                        <label className='text-white absolute flex items-center bg-black bg-opacity-30 justify-center w-full h-full sm:hidden' htmlFor="">{v.name}</label>
                                     </div>
                                     <label className='p-[2%] hidden cursor-pointer bg-hov group-hover:bg-hov2 w-[60%] rounded-r-xl h-full sm:flex items-center' htmlFor="">{v.name}</label>
                             </button>)
