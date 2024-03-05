@@ -176,7 +176,7 @@ const handleLinkClick = (v)=>{
                                     if(v[0].length>0)
                                     return(
                                       <div key={v[0]} className='flex flex-row justify-between items-center pr-[2%] sm:hover:bg-hov rounded-2xl'>
-                                      <button onClick={()=>handleLinkClick(v)}  className='w-full flex flex-row  items-center px-[4%] py-[1%]'>
+                                      <button onClick={()=>handleLinkClick(v[0])}  className='w-full flex flex-row  items-center px-[4%] py-[1%]'>
                                       <svg
                                         fill="none"
                                         stroke="currentColor"
