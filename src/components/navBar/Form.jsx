@@ -1,16 +1,17 @@
-import React, { useState,useRef ,useEffect} from 'react'
+import React, { useState,useRef ,useEffect, useContext} from 'react'
 import {useSearchParams,NavLink,useNavigate} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import { checkDuplicate, editCookie,formatCookies,removeItem } from '../../data/data'
 import RecomendedSearch from './RecomendedSearch'
 import SearchDrop from './SearchDrop'
+import { prevSearchContext,prevSearchContextHandler } from '../../contexts/PrevSearchContext'
 
 function Form({logoSection,savedIconSection,y}) {
   const [searchparams,setSearchparams] = useSearchParams()
   const [query,setQuery] = useState(searchparams.get('query')||'')
   const [show,setShow] = useState(false)
   const [showSmall,setShowSmall] = useState(false)
-  const [prevSearch,setPreavSearch] = useState(Cookies.get('prevSearch') ? formatCookies(Cookies.get('prevSearch')) :[])
+  const [prevSearch,setPreavSearch] = [useContext(prevSearchContext),useContext(prevSearchContextHandler)]
   const [showSmallDrop,setShowSmallDrop] = useState(false)
   const navigate = useNavigate()
   const dropDownref = useRef(null)
@@ -26,14 +27,6 @@ const handleSubmit = (e)=>{
       document.body.style.overflowY = "scroll"
       setShowSmallDrop(false)
       navigate(`/search?query=${query}`)
-      if(checkDuplicate(query,prevSearch))
-         return
-      if(prevSearch.length>7)
-         setPreavSearch(p=>[...prevSearch.slice(1),[query,'']])
-      
-      else{
-         setPreavSearch(p=>[...prevSearch,[query,'']])
-      }
 }
 
 const handlePrevSearchChange = (v)=>{
@@ -182,7 +175,6 @@ const handleLinkClick = (v)=>{
                                   {prevSearch.map((v,i)=>{
                                     if(v[0].length>0)
                                     return(
-
                                       <div key={v[0]} className='flex flex-row justify-between items-center pr-[2%] sm:hover:bg-hov rounded-2xl'>
                                       <button onClick={()=>handleLinkClick(v)}  className='w-full flex flex-row  items-center px-[4%] py-[1%]'>
                                       <svg

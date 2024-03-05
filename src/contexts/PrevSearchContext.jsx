@@ -1,3 +1,5 @@
 import { createContext, useContext } from "react"
 
-export const prevSearch = createContext(null)
+export const prevSearchContext = createContext(null)
+
+export const prevSearchContextHandler = createContext(null)

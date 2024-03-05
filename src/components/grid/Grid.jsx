@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {useSearchParams} from 'react-router-dom'
-import {fetchData} from '../../data/data'
+import {fetchData,editCookie} from '../../data/data'
 import {useInView} from 'react-intersection-observer'
+import { prevSearchContextHandler } from '../../contexts/PrevSearchContext'
 import Masonry from './Masonry'
 
 let page = 0
@@ -11,20 +12,24 @@ function Grid({query2,src}) {
   const [searchparams,setSearchParams] = useSearchParams()
   const [fetching,setFetching] = useState(false)
   const [data,setData] = useState([])
+  const [noDataFound,setNoDataFound] = useState(false)
   const { ref, inView, entry } = useInView({
     threshold: 0,
   })
-
   const query = searchparams.get('query') || query2 || ''
-  
+  const prevSearchContextHandlerFun = useContext(prevSearchContextHandler)
   useEffect(()=>{
     if(inView&&!fetching){
+      setNoDataFound(false)
       page+=1
       console.log('fetching')
       let newData = []
       setFetching(true)
       fetchData(query,page,src).then(res=>{
         newData = res
+        if(data.length ===0&&res.length===0){
+          setNoDataFound(true)
+        }
         setData(p=>[...p,...newData])
         setFetching(false)
     })
@@ -33,11 +38,20 @@ function Grid({query2,src}) {
 
 useEffect(()=>{
   page=0
+  setNoDataFound(false)
   setFetching(true)
   setData([])
   fetchData(query,page,src).then(res=>{
     let newData = res
     setData(p=>[...newData])
+    if(res.length===0){
+      setNoDataFound(true)
+    }
+    else{
+      if(query.length>0){
+        prevSearchContextHandlerFun(editCookie(query,newData[0]))
+      }
+    }
     setFetching(false)
   })
   page+=1 
@@ -45,7 +59,7 @@ useEffect(()=>{
 
   return (
     <>
-      { true ? 
+      { !noDataFound ? 
         <div className='px-[2%] sm:px-[0%]'>
 
         <Masonry data={data}></Masonry>

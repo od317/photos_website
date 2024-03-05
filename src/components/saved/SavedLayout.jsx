@@ -14,15 +14,7 @@ function SavedLayout() {
   }
 
   useEffect(()=>{
-       const handleStorage = ()=>{
-             console.log('storage changed')
-       }
-       window.addEventListener('storage', handleStorage())
        window.scrollTo({top:0})
-
-       return()=>{
-        window.removeEventListener('storage', handleStorage())
-       }
   },[])
   return (
     <>

@@ -6,11 +6,8 @@ export const fetchData = async (query,pagenum,src)=>{
     if(query.length>0){
         const res = await fetch(`https://api.unsplash.com/search/photos?client_id=${AccessKey}&per_page=15&page=${pagenum}&&query=${query}`)
         const data = await res.json()
-        if(src&&src=='searchPage')
-           editCookie(query,data.results[0])
         return data.results
     }
-    let qs = formatCookiesQs(formatCookies(Cookies.get('prevSearch')))
     const res = await fetch(`https://api.unsplash.com/photos/?client_id=${AccessKey}&per_page=15&page=${pagenum}`)
     const data = await res.json()
     return data
@@ -24,6 +21,8 @@ export const getPhoto = async (id)=>{
 
 export const editCookie = (query,img)=>{
             // ps preacSearch
+            if(!img)
+               return
             img = img.urls.small
             let ps = Cookies.get('prevSearch') || ''
             if(checkDuplicate(query,formatCookies(ps))){
@@ -37,7 +36,7 @@ export const editCookie = (query,img)=>{
             else
                ps = [...ps,cur]
             Cookies.set('prevSearch', ps , { expires: 7 })
-            return ps
+            return formatCookies(Cookies.get('prevSearch'))
 }
 
 export const removeItem = (item)=>{
