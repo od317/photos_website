@@ -18,12 +18,15 @@ function SavedLayout() {
   },[])
   return (
     <>
+    { data.length > 0 ? 
+    <>
     <div className='flex items-center justify-center text-[150%] font-semibold'>Saved Photos</div>
-    { data.length > 0 ? <div className='px-[2%] sm:px-[0%]'>
+    <div className='px-[2%] sm:px-[0%]'>
       <Masonry handleDataChange={handleDataChange} data={data} />
     </div>
+    </>
     :
-    <div>no saved photos</div>
+    <div className='flex flex-row items-center justify-center w-full font-semibold text-[120%]'>no saved photos</div>
     }
     </>
   )

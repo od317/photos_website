@@ -2,13 +2,13 @@ import Cookies from 'js-cookie'
 
 const AccessKey = 'Tj7kO8KhPyJ1xonByecV2i6py0mranMD8W18AzR_uWI'
 
-export const fetchData = async (query,pagenum,src)=>{
+export const fetchData = async (query,pagenum,src,signal)=>{
     if(query.length>0){
-        const res = await fetch(`https://api.unsplash.com/search/photos?client_id=${AccessKey}&per_page=15&page=${pagenum}&&query=${query}`)
+        const res = await fetch(`https://api.unsplash.com/search/photos?client_id=${AccessKey}&per_page=15&page=${pagenum}&&query=${query}`,{signal:signal})
         const data = await res.json()
         return data.results
     }
-    const res = await fetch(`https://api.unsplash.com/photos/?client_id=${AccessKey}&per_page=15&page=${pagenum}`)
+    const res = await fetch(`https://api.unsplash.com/photos/?client_id=${AccessKey}&per_page=15&page=${pagenum}`,{signal:signal})
     const data = await res.json()
     return data
 }
@@ -120,7 +120,6 @@ const formatCookiesQs = (arr)=>{
         s= s+""+v[0]+","
       })
       s=s.substring(0,s.length-1)
-      console.log(s)
       return s
 }
 
@@ -178,7 +177,6 @@ export const downloadImage = (imageUrl) => {
             setImageUrl(url);
         })
         .catch(error => {
-            console.error('Error downloading image:', error);
         });
     }
 

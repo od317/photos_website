@@ -19,13 +19,15 @@ function Grid({query2,src}) {
   const query = searchparams.get('query') || query2 || ''
   const prevSearchContextHandlerFun = useContext(prevSearchContextHandler)
   useEffect(()=>{
+    const abortController = new AbortController()
+    const signal = abortController.signal
     if(inView&&!fetching){
       setNoDataFound(false)
       page+=1
       console.log('fetching')
       let newData = []
       setFetching(true)
-      fetchData(query,page,src).then(res=>{
+      fetchData(query,page,src,signal).then(res=>{
         newData = res
         if(data.length ===0&&res.length===0){
           setNoDataFound(true)
@@ -34,14 +36,19 @@ function Grid({query2,src}) {
         setFetching(false)
     })
     }
+    return()=>{
+      abortController.abort()
+    }
   },[inView])
 
 useEffect(()=>{
+  const abortController = new AbortController()
+  const signal = abortController.signal
   page=0
   setNoDataFound(false)
   setFetching(true)
   setData([])
-  fetchData(query,page,src).then(res=>{
+  fetchData(query,page,src,signal).then(res=>{
     let newData = res
     setData(p=>[...newData])
     if(res.length===0){
@@ -55,6 +62,9 @@ useEffect(()=>{
     setFetching(false)
   })
   page+=1 
+  return()=>{
+    abortController.abort()
+  }
 },[query])
 
   return (
@@ -79,7 +89,7 @@ useEffect(()=>{
                 </span>
         </div>
         </div>
-        : <div> no results found </div>
+        : <div className='flex flex-row items-center justify-center w-full font-semibold text-[120%]'> no results found </div>
       }
     </>
   )

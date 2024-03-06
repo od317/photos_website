@@ -15,7 +15,6 @@ function App() {
 
   const handlePreavSearch = ()=>{
         const newPrev = formatCookies(Cookies.get('prevSearch'))
-        console.log('new prev is ',newPrev)
         setPreavSearch(newPrev)
   }
 
