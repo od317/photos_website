@@ -24,7 +24,6 @@ function Grid({query2,src}) {
     if(inView&&!fetching){
       setNoDataFound(false)
       page+=1
-      console.log('fetching')
       let newData = []
       setFetching(true)
       fetchData(query,page,src,signal).then(res=>{
